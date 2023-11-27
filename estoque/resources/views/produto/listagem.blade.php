@@ -29,6 +29,11 @@
         <td>
             <a href="{{route('detalhes',['id'=> $p->id])}}">Visualizar</span></a>
         </td>
+        <td>
+            <a href="{{route('remover',['id'=> $p->id])}}">
+                Remover
+            </a>
+        </td>
     </tr>
     @endforeach
 

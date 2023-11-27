@@ -21,3 +21,5 @@ Route::get('/produtos/mostra/{id}', [ProdutoController::class, 'mostra'])->name(
 Route::get("/produtos/novo", [ProdutoController::class, 'novo'])->name('novo');
 
 Route::post('/produtos/adiciona', [ProdutoController::class, 'adiciona'])->name("adiciona");
+
+Route::get('/produtos/remove/{id}', [ProdutoController::class, 'remove'])->name("remover");

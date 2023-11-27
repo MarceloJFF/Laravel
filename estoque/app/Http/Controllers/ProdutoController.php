@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Requests\ProdutosRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ProdutoController extends Controller
 {
@@ -28,15 +31,13 @@ class ProdutoController extends Controller
     {
         return view('produto/formulario');
     }
-    public function adiciona(Request $request)
+    public function adiciona(ProdutosRequest $request)
     {
-        $produto = new Produto();
 
-        $produto->nome = $request->input('nome');
-        $produto->descricao = $request->input('descricao');
 
-        $produto->valor = $request->input('valor');
-        $produto->quantidade = $request->input('quantidade');
+        $params = $request->all();
+
+        $produto = new Produto($params);
         $produto->save();
         return redirect('/')->withInput(Request::only('nome'));
 
@@ -44,6 +45,12 @@ class ProdutoController extends Controller
         // return redirect()
         // ->action(’ProdutoController@lista’)
         // ->withInput(Request::only(’nome’));
+    }
+    public function remove($id)
+    {
+        $produto = Produto::find($id);
+        $produto->delete();
+        return redirect('/');
     }
     public function listaJson()
     {
