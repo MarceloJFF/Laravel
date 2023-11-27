@@ -15,4 +15,9 @@ use App\Http\Controllers\ProdutoController;
 */
 
 
-Route::get('/',[ProdutoController::class,'listar']);
+Route::get('/', [ProdutoController::class, 'listar'])->name('listagem');
+Route::get('/produtos/mostra/{id}', [ProdutoController::class, 'mostra'])->name("detalhes")->where(["id" => "[0-9]+"]); //informa pro laravel que id deve ser numero
+
+Route::get("/produtos/novo", [ProdutoController::class, 'novo'])->name('novo');
+
+Route::post('/produtos/adiciona', [ProdutoController::class, 'adiciona'])->name("adiciona");
