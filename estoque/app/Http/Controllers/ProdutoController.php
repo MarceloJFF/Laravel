@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Requests\ProdutosRequest;
+//use Illuminate\Http\Requests\ProdutosRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Produto;
 use Illuminate\Support\Facades\Validator;
@@ -31,7 +31,7 @@ class ProdutoController extends Controller
     {
         return view('produto/formulario');
     }
-    public function adiciona(ProdutosRequest $request)
+    public function adiciona(Request $request)
     {
 
 
@@ -39,7 +39,7 @@ class ProdutoController extends Controller
 
         $produto = new Produto($params);
         $produto->save();
-        return redirect('/')->withInput(Request::only('nome'));
+        return redirect('/')->withInput($request->only('nome'));
 
         // return view('produto.adicionado', ['nome' => $nome]);
         // return redirect()
